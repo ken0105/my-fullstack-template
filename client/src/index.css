@@ -1,0 +1,16 @@
+body {
+    /*background-color: #171A1C;*/
+    margin: 0;
+}
+
+body, select, input, textarea, button {
+    font-family: YuGothic, Yu Gothic, meiryo, Arial, sans-serif;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+input, button, select, a {
+    outline: none;
+}
