@@ -10,7 +10,7 @@ type Props = {
 export const NewTodo: React.FC<Props> = ({reloadTodos}) => {
     const [task, setTask] = useState("")
     const registerTask = async () => {
-        await fetch('http://localhost:8080/todoItems',{
+        await fetch('http://localhost:8080/todoItems', {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: task
@@ -20,7 +20,7 @@ export const NewTodo: React.FC<Props> = ({reloadTodos}) => {
 
     return (
         <NewTodoWrapper>
-            <TaskTextarea label="New Todo"
+            <TaskTextarea label="New TodoDetail"
                        variant="outlined"
                        value={task}
                       onChange={(e) => {setTask(e.target.value)}}/>

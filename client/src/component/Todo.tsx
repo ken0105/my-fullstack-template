@@ -1,58 +1,58 @@
-import React, {useState} from "react";
-import {TodoItem} from "../App";
+import React from "react";
+import AppBar from "@material-ui/core/AppBar";
+import {NewTodo} from "./NewTodo";
+import {TodoDetail} from "./TodoDetail";
 import styled from "styled-components";
-import {Box, Checkbox, FormLabel, Paper} from "@material-ui/core";
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
 
-type Props = {
-    todoItem: TodoItem
-    reloadTodos: () => void
+export class TodoItem {
+    id: number | undefined
+    task: string | undefined
+    isDone: boolean | undefined
 }
 
-export const Todo: React.FC<Props> = ({
-                                          todoItem,
-                                          reloadTodos
-                                      }) => {
-    const [task, setTask] = useState(todoItem)
-    const updateIsDone = async () => {
-        await fetch(`http://localhost:8080/todoItems/${task.id}`, {
-            method: "PUT",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({...task, isDone: !task.isDone})
-        });
-        setTask({...task, isDone: !task.isDone})
-    };
+interface Props {}
 
-    const deleteTask = async () => {
-        await fetch(`http://localhost:8080/todoItems/${task.id}`, {
-            method: "DELETE",
-            headers: {"Content-Type": "application/json"},
-        });
-        reloadTodos()
-    };
-
-    return (<TodoWrapper>
-        <FormLabel>Finished
-        <Checkbox checked={task.isDone}
-               onChange={() => updateIsDone()}/>
-        </FormLabel>
-        <TaskBox component="span">{task.task}</TaskBox>
-        <IconButton aria-label="delete" onClick={() => deleteTask()}>
-            <DeleteIcon/>
-        </IconButton>
-    </TodoWrapper>);
+interface State {
+    todoItems: TodoItem[]
 }
 
-const TodoWrapper = styled(Paper)`
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border: #282c34;
+export default class Todo extends React.Component<Props, State> {
+    constructor(props: Props) {
+        super(props)
+        this.state = {
+            todoItems: []
+        }
+    }
+
+    public async componentDidMount() {
+        await this.reloadTodos()
+    }
+
+    public reloadTodos = async () => {
+        await fetch("http://localhost:8080/todoItems").then((response) => {
+            return response.json()
+        }).then((data) => {
+            this.setState({todoItems: data})
+        });
+    };
+
+    render() {
+        return <>
+            <AppBar position="static">
+                <TodoAppTitle>TodoApp with React(TypeScript) and SpringBoot(Kotlin)</TodoAppTitle>
+                <h2>This app is created to learn these Frameworks, languages and TDD(Test Driven Development).</h2>
+            </AppBar>
+            <NewTodo reloadTodos={this.reloadTodos}/>
+            {this.state.todoItems &&
+            <div>{this.state.todoItems?.map((todoItem) => {
+                return <TodoDetail key={todoItem.id} todoItem={todoItem} reloadTodos={this.reloadTodos}/>
+            })}</div>
+            }
+        </>;
+    }
+
+};
+
+const TodoAppTitle = styled.h1`
+    margin: 0;
 `
-
-const TaskBox = styled(Box)`
-    width: 50vw;
-`
-
-
