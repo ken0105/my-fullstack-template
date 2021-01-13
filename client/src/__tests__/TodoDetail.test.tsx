@@ -22,7 +22,6 @@ describe("Todo Detail test", () => {
     })
 
     test('finishes todo with PUT API', async () => {
-
         await act(async () => {
             wrapper.update()
             expect(spyFetch).toBeCalledTimes(0)
@@ -38,12 +37,15 @@ describe("Todo Detail test", () => {
     })
 
     test('restarts todo with PUT API', async () => {
+        const todoItem = {id: 1, task: "task1", isDone: true};
+        spyReload = jest.fn()
+        wrapper = await shallow(<TodoDetail todoItem={todoItem} reloadTodos={spyReload}/>);
+
         await act(async () => {
             wrapper.update()
             expect(spyFetch).toBeCalledTimes(0)
             wrapper.find(".isDoneCheckbox").simulate("change", {target: {checked: false}})
         });
-
         expect(wrapper.find(".isDoneCheckbox").prop("checked")).toBe(false)
         expect(spyFetch).toHaveBeenCalledWith("http://localhost:8080/todoItems/1", {
             method: "PUT",

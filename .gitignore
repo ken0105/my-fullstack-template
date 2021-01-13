@@ -40,3 +40,4 @@ out/
 .vscode/
 
 /client/.eslintcache
+/client/src/react-app-env.d.ts

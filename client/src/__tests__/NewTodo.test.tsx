@@ -2,7 +2,7 @@ import Enzyme, {mount} from "enzyme";
 import EnzymeAdapter from "enzyme-adapter-react-16";
 import {NewTodo} from "../component/NewTodo";
 import React from "react";
-import {flushPromises} from "./helpers";
+import {flushPromises} from "../__test_tools/helpers";
 
 Enzyme.configure({adapter: new EnzymeAdapter()});
 

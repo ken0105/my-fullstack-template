@@ -7,7 +7,6 @@ import java.sql.ResultSet
 
 @Repository
 class TodoRepository(val jdbcTemplate: JdbcTemplate) {
-    private val todoItems = listOf(TodoItem(1, "GDC", true))
     fun all(): List<TodoItem> {
         return jdbcTemplate.query(
                 "select * from todo order by id") {

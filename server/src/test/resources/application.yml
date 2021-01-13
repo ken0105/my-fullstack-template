@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/todo_test
+    username: postgres
+  flyway:
+    baselineOnMigrate: true
+    user: postgres

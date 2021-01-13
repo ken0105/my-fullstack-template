@@ -15,7 +15,6 @@ test('renders title', () => {
 
 test('renders registration field', () => {
     const wrapper = mount(<Todo/>);
-    console.log(wrapper.debug())
     expect(wrapper.find(NewTodo).exists()).toBe(true)
 });
 

@@ -16,15 +16,12 @@ export const TodoDetail: React.FC<Props> = ({
                                       }) => {
     const [task, setTask] = useState(todoItem)
     const updateIsDone = async () => {
-        console.log(task)
         await fetch(`http://localhost:8080/todoItems/${task.id}`, {
             method: "PUT",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({...task, isDone: !task.isDone})
         });
         setTask({...task, isDone: !task.isDone})
-        console.log(task)
-        console.log("set task is done.")
     };
 
     const deleteTask = async () => {

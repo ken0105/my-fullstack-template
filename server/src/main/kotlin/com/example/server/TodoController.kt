@@ -8,14 +8,12 @@ import org.springframework.web.bind.annotation.*
 class TodoController(var todoService: TodoService) {
     @GetMapping("/todoItems")
     fun getAllTodos(): List<TodoItem> {
-        print(todoService.getAllTodos())
         return todoService.getAllTodos()
     }
 
     @PutMapping("/todoItems/{todoId}")
     fun updateTodo(@PathVariable todoId: Int,
                    @RequestBody todoItem: TodoItem) {
-        println(todoItem)
         todoService.updateTodo(todoId, todoItem)
     }
 
@@ -29,7 +27,3 @@ class TodoController(var todoService: TodoService) {
         todoService.deleteTodo(todoId)
     }
 }
-
-data class TodoItems(
-        val TodoItems: List<TodoItem>
-)

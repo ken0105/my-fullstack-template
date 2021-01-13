@@ -1,1 +1,0 @@
-insert into todo (task, is_done) values ('てすと', false);
