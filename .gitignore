@@ -42,3 +42,4 @@ out/
 /client/.eslintcache
 /client/src/react-app-env.d.ts
 /e2e/node_modules/
+/e2e/cypress/videos/
