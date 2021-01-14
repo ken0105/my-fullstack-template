@@ -13,7 +13,7 @@ import org.springframework.http.HttpMethod
 import org.springframework.http.HttpStatus
 import org.springframework.test.context.jdbc.Sql
 
-@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Sql(scripts = ["/test-clear_db.sql", "/test-seed_db.sql"])
 class TodoControllerTest {
     @Autowired
@@ -25,13 +25,13 @@ class TodoControllerTest {
         val todos = jacksonObjectMapper().readValue<List<TodoItem>>(response.body!!)
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(todos).isEqualTo(
-                listOf(TodoItem(1, "todo for tests", false),
-                        TodoItem(2,"todo2 for tests", true)))
+                listOf(TodoItem(2, "todo2 for tests", true),
+                        TodoItem(1, "todo for tests", false)))
     }
 
     @Test
     fun `PUT API makes todo done`() {
-        val todoChanged = TodoItem(1,"replaced todo for tests", true)
+        val todoChanged = TodoItem(1, "replaced todo for tests", true)
         var response = restTemplate.exchange("/todoItems/1", HttpMethod.PUT, HttpEntity(todoChanged, null), String::class.java)
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
 
@@ -40,8 +40,8 @@ class TodoControllerTest {
         val todos = jacksonObjectMapper().readValue<List<TodoItem>>(response.body!!)
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(todos).isEqualTo(
-                listOf(TodoItem(1, "replaced todo for tests", true),
-                        TodoItem(2,"todo2 for tests", true)))
+                listOf(TodoItem(2, "todo2 for tests", true),
+                        TodoItem(1, "replaced todo for tests", true)))
     }
 
     @Test
@@ -55,9 +55,9 @@ class TodoControllerTest {
         val todos = jacksonObjectMapper().readValue<List<TodoItem>>(response.body!!)
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(todos).isEqualTo(
-                listOf(TodoItem(1, "todo for tests", false),
-                        TodoItem(2,"todo2 for tests", true),
-                        TodoItem(3, "This is a new todo.", false)))
+                listOf(TodoItem(3, "This is a new todo.", false),
+                        TodoItem(2, "todo2 for tests", true),
+                        TodoItem(1, "todo for tests", false)))
     }
 
     @Test
@@ -70,7 +70,7 @@ class TodoControllerTest {
         val todos = jacksonObjectMapper().readValue<List<TodoItem>>(response.body!!)
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(todos).isEqualTo(
-                listOf(TodoItem(2,"todo2 for tests", true)))
+                listOf(TodoItem(2, "todo2 for tests", true)))
     }
 
 }
