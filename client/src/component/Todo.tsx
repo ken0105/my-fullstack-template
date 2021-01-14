@@ -39,8 +39,8 @@ export default class Todo extends React.Component<Props, State> {
     render() {
         return <>
             <AppBar position="static">
-                <TodoAppTitle>TodoApp with React(TypeScript) and SpringBoot(Kotlin)</TodoAppTitle>
-                <h2>This app is created to learn these Frameworks, languages and TDD(Test Driven Development).</h2>
+                <TodoAppTitle>The TodoApp</TodoAppTitle>
+                <TodoAppSubTitle>This app is created to learn React(TypeScript), SpringBoot(Kotlin) and TDD(Test Driven Development).</TodoAppSubTitle>
             </AppBar>
             <NewTodo reloadTodos={this.reloadTodos}/>
             {this.state.todoItems &&
@@ -55,4 +55,8 @@ export default class Todo extends React.Component<Props, State> {
 
 const TodoAppTitle = styled.h1`
     margin: 0;
+`
+const TodoAppSubTitle = styled.h2`
+    margin: 0;
+    font-size: 18px;
 `

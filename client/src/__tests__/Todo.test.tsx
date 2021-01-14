@@ -9,8 +9,8 @@ Enzyme.configure({adapter: new EnzymeAdapter()});
 
 test('renders title', () => {
     const wrapper = mount(<Todo/>);
-    expect(wrapper.text()).toContain("TodoApp with React(TypeScript) and SpringBoot(Kotlin)");
-    expect(wrapper.text()).toContain("This app is created to learn these Frameworks, languages and TDD(Test Driven Development).")
+    expect(wrapper.text()).toContain("The TodoApp");
+    expect(wrapper.text()).toContain("This app is created to learn React(TypeScript), SpringBoot(Kotlin) and TDD(Test Driven Development).")
 });
 
 test('renders registration field', () => {
