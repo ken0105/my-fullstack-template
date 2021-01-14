@@ -9,7 +9,7 @@ import java.sql.ResultSet
 class TodoRepository(val jdbcTemplate: JdbcTemplate) {
     fun all(): List<TodoItem> {
         return jdbcTemplate.query(
-                "select * from todo order by id") {
+                "select * from todo order by id desc") {
             rs: ResultSet, _: Int ->
             TodoItem(
                     rs.getInt("id"),

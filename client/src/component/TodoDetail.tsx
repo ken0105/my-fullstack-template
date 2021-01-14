@@ -32,7 +32,7 @@ export const TodoDetail: React.FC<Props> = ({
         reloadTodos()
     };
 
-    return (<TodoWrapper>
+    return (<TodoWrapper className="TodoDetail">
         <FormLabel>Finished
         <Checkbox className="isDoneCheckbox" checked={task.isDone}
                onChange={() => updateIsDone()}/>
