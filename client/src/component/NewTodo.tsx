@@ -10,7 +10,7 @@ type Props = {
 export const NewTodo: React.FC<Props> = ({reloadTodos}) => {
     const [task, setTask] = useState("")
     const registerTask = async () => {
-        await fetch('http://localhost:8080/todoItems', {
+        await fetch( process.env.REACT_APP_API_BASE_URL + 'todoItems', {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: task

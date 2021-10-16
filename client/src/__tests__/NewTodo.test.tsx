@@ -26,7 +26,7 @@ describe("New Todo test", () => {
         wrapper.find('input[type="text"]').simulate("change", {target: {value: "this is a new todo"}})
         wrapper.find('button').simulate("click");
         await flushPromises()
-        expect(spyFetch).toHaveBeenCalledWith('http://localhost:8080/todoItems', {
+        expect(spyFetch).toHaveBeenCalledWith(process.env.REACT_APP_API_BASE_URL + 'todoItems', {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: "this is a new todo"

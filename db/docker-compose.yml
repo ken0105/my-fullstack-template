@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  postgresql:
+    image: postgres:latest
+    container_name: my_template_postgres
+    ports:
+      - 5532:5432
+    volumes:
+      - ./my_database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
+        - TZ="Asia/Tokyo"
+    hostname: postgres
+    restart: always
+    user: root
+    networks:
+      - my_network
+
+volumes:
+  my_database:
+
+networks:
+  my_network:

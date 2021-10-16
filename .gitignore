@@ -43,3 +43,6 @@ out/
 /client/src/react-app-env.d.ts
 /e2e/node_modules/
 /e2e/cypress/videos/
+/db/my_database/
+/client/
+/e2e/

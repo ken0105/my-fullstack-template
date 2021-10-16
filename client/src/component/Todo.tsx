@@ -29,7 +29,7 @@ export default class Todo extends React.Component<Props, State> {
     }
 
     public reloadTodos = async () => {
-        await fetch("http://localhost:8080/todoItems").then((response) => {
+        await fetch(process.env.REACT_APP_API_BASE_URL  + "todoItems").then((response) => {
             return response.json()
         }).then((data) => {
             this.setState({todoItems: data})

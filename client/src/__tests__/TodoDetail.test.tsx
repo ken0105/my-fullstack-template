@@ -29,7 +29,7 @@ describe("Todo Detail test", () => {
         });
 
         expect(wrapper.find(".isDoneCheckbox").prop("checked")).toBe(true)
-        expect(spyFetch).toHaveBeenCalledWith("http://localhost:8080/todoItems/1", {
+        expect(spyFetch).toHaveBeenCalledWith(process.env.REACT_APP_API_BASE_URL + "todoItems/1", {
             method: "PUT",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({id: 1, task: "task1", isDone: true})
@@ -47,7 +47,7 @@ describe("Todo Detail test", () => {
             wrapper.find(".isDoneCheckbox").simulate("change", {target: {checked: false}})
         });
         expect(wrapper.find(".isDoneCheckbox").prop("checked")).toBe(false)
-        expect(spyFetch).toHaveBeenCalledWith("http://localhost:8080/todoItems/1", {
+        expect(spyFetch).toHaveBeenCalledWith(process.env.REACT_APP_API_BASE_URL + "todoItems/1", {
             method: "PUT",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({id: 1, task: "task1", isDone: false})
@@ -59,7 +59,7 @@ describe("Todo Detail test", () => {
             expect(spyFetch).toBeCalledTimes(0)
             wrapper.find(".todoDeleteButton").simulate("click")
         })
-        expect(spyFetch).toHaveBeenCalledWith(`http://localhost:8080/todoItems/1`, {
+        expect(spyFetch).toHaveBeenCalledWith(process.env.REACT_APP_API_BASE_URL + "todoItems/1", {
             method: "DELETE",
             headers: {"Content-Type": "application/json"},
         })

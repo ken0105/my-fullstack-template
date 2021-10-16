@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 
 @Service
-class TodoService(val todoRepository: TodoRepository) {
+class TodoService(private val todoRepository: TodoRepository) {
 //    ↓ is not recommended
 //    @Autowired
 //    private lateinit var todoRepository: TodoRepository

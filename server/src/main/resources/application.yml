@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:5432/${DB_NAME:todo_dev}
+    url: jdbc:postgresql://${DB_HOST:localhost}:5532/${DB_NAME:postgres}
     username: ${DB_USER:postgres}
-    password: ${DB_PASSWORD}
+    password: ${DB_PASSWORD:password}
   flyway:
     baselineOnMigrate: true
     user: ${DB_MIGRATION_USER:postgres}
-    password: ${DB_MIGRATION_PASSWORD}
+    password: ${DB_MIGRATION_PASSWORD:password}

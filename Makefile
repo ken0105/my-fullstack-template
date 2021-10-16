@@ -1,8 +1,17 @@
+base:
+	cd db && docker-compose -p my_fullstack_template_db up --detach
+
+base/stop:
+	cd db && docker-compose stop
+
+base/down:
+	cd db && docker-compose down
+
 run-client:
 	cd client && npm start
 
 run-server:
-	cd server && SERVER_PORT=8080 ./gradlew bootRun
+	cd server && SERVER_PORT=8081 ./gradlew bootRun
 
 run-e2e:
 	cd e2e && npm run cypress:run
