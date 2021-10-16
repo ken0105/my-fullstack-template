@@ -1,8 +1,4 @@
-# The TodoApp
-
-This is the Sample Application for developers wants to develop a FullStack Application. 
-
-![screenshot](./screenshot.png)
+# My FullStack Template
 
 # Documents
 - [Front-end application](./client/README.md)
